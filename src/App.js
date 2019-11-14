@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import AppMenu from './components/AppMenu';
+import Lists from './components/Lists';
 
 import 'typeface-roboto';
 
@@ -10,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <AppMenu />
+      <Lists />
     </div>
   );
 }

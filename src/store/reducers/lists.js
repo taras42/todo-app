@@ -5,7 +5,16 @@ const initialState = [];
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_LIST: {
+      const { id, name } = action.payload;
       
+      return [
+        {
+          id,
+          name,
+          todos: []
+        },
+        ...state
+      ]
     }
     default:
       return state;

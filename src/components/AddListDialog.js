@@ -42,7 +42,7 @@ export default function FormDialog() {
             id="name"
             label="List Name"
             fullWidth
-            onChange={ (value) => { setName(value) } }
+            onChange={ (event) => { setName(event.target.value) } }
           />
         </DialogContent>
         <DialogActions>
