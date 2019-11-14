@@ -5,9 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import Button from '@material-ui/core/Button';
 
-import { useDispatch } from 'react-redux'
+import AddListDialog from './AddListDialog';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -95,9 +94,7 @@ export default function PrimarySearchAppBar() {
             />
           </div>
           <div className={classes.grow} />
-          <Button variant="contained">
-            Add List
-          </Button>
+          <AddListDialog />
         </Toolbar>
       </AppBar>
     </div>
