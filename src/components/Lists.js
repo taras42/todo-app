@@ -9,12 +9,12 @@ const style = {
 }
 
 export default () => {
-    const lists = useSelector(state => state.lists);
+    const lists = useSelector(state => Object.values(state.lists).sort((a, b) => a.id - b.id));
 
     return (
         <div className="lists" style={style}>
             {
-                lists.map(list => <List key={list.id} name={list.name} />)
+                lists.map(list => <List key={list.id} id={list.id} name={list.name} />)
             }
         </div>
     )
