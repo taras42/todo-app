@@ -44,7 +44,11 @@ export default function FormDialog(props) {
     setSelectedDate(new Date());
     setOpen(false);
 
-    dispatch(addTodo(props.listId, name, description, selectedDate, props.listName));
+    dispatch(addTodo(props.listId, name, description, {
+      year: selectedDate.getFullYear(),
+      month: selectedDate.getMonth(),
+      day: selectedDate.getDate()
+    }, props.listName));
   }
 
   const handleDateChange = date => {
@@ -67,12 +71,11 @@ export default function FormDialog(props) {
             onChange={ (event) => { setName(event.target.value) } }
           />
           <TextField
-            autoFocus
             margin="dense"
             id="description"
             label="Description"
             fullWidth
-            onChange={ (event) => { setName(event.target.value) } }
+            onChange={ (event) => { setDescription(event.target.value) } }
           />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker

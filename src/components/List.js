@@ -4,6 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { Button } from "@material-ui/core";
 
+import Todo from './Todo';
+
 import AddTodoDialog from './AddTodoDialog';
 
 const useStyles = makeStyles(theme => ({
@@ -34,6 +36,9 @@ export default function List(props) {
         </Typography>
         <AddTodoDialog listId={props.id} listName={props.name} rootStyle={addTodoDialogStyle} />
       </div>
+      {
+          props.todos.map((todo) => <Todo key={todo.id} listId={props.id} {...todo} />)
+      }
     </Paper>
   );
 }

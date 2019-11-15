@@ -14,7 +14,7 @@ export default () => {
     return (
         <div className="lists" style={style}>
             {
-                lists.map(list => <List key={list.id} id={list.id} name={list.name} />)
+                lists.map(list => <List key={list.id} {...list} />)
             }
         </div>
     )
