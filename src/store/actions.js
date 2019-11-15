@@ -1,4 +1,4 @@
-import { ADD_TODO, ADD_LIST, REMOVE_TODO } from "./actionTypes";
+import { ADD_TODO, ADD_LIST, REMOVE_TODO, MOVE_TODO } from "./actionTypes";
 
 export const addList = name => ({
   type: ADD_LIST,
@@ -25,6 +25,17 @@ export const removeTodo = (todoId, listId) => {
         payload: {
             listId,
             todoId
+        }
+    }
+}
+
+export const moveTodo = (id, from, to) => {
+    return {
+        type: MOVE_TODO,
+        payload: {
+            id,
+            from,
+            to
         }
     }
 }

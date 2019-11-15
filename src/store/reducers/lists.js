@@ -1,4 +1,4 @@
-import { ADD_TODO, ADD_LIST, REMOVE_TODO } from "../actionTypes";
+import { ADD_TODO, ADD_LIST, REMOVE_TODO, MOVE_TODO } from "../actionTypes";
 
 const initialState = {};
 
@@ -45,6 +45,39 @@ export default function(state = initialState, action) {
         [listId]: {
           ...list,
           todos
+        }
+      }
+    }
+    case MOVE_TODO: {
+      const { id, from, to } = action.payload;
+
+      const fromList = state[from];
+      const toList = state[to];
+
+      const { fromListTodos, todo } = fromList.todos.reduce((memo, todo) => {
+        if (todo.id !== id) {
+          memo.fromListTodos.push(todo);
+        } else {
+          memo.todo = todo;
+        }
+
+        return memo;
+      }, {
+        fromListTodos: [],
+        todo: {}
+      });
+
+      const toListTodos = [todo, ...toList.todos];
+
+      return {
+        ...state,
+        [from]: {
+          ...fromList,
+          todos: fromListTodos
+        },
+        [to]: {
+          ...toList,
+          todos: toListTodos
         }
       }
     }

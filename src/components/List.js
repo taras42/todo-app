@@ -4,6 +4,14 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { Button } from "@material-ui/core";
 
+import { useDrop } from 'react-dnd'
+
+import { ItemTypes } from './Constants'
+
+import { useDispatch } from 'react-redux'
+
+import { moveTodo } from '../store/actions';
+
 import Todo from './Todo';
 
 import AddTodoDialog from './AddTodoDialog';
@@ -27,9 +35,19 @@ const addTodoDialogStyle = {
 
 export default function List(props) {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleDrop = (item) => {
+    dispatch(moveTodo(item.id, item.ownerId, props.id));
+  }
+
+  const [collectedProps, drop] = useDrop({
+    accept: ItemTypes.CARD,
+    drop: handleDrop
+  });
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} ref={drop}>
       <div className="list-header" style={listHeaderStyle}>
         <Typography align="justify" variant="h5" component="h3">
           <p>{props.name}</p>
