@@ -10,7 +10,7 @@ import { ItemTypes } from './Constants'
 
 import { useDispatch } from 'react-redux'
 
-import { moveTodo } from '../store/actions';
+import { moveTodo, removeList } from '../store/actions';
 
 import Todo from './Todo';
 
@@ -41,6 +41,10 @@ export default function List(props) {
     dispatch(moveTodo(item.id, item.ownerId, props.id));
   }
 
+  const handleRemoveList = () => {
+    dispatch(removeList(props.id));
+  }
+
   const [collectedProps, drop] = useDrop({
     accept: ItemTypes.CARD,
     drop: handleDrop
@@ -57,6 +61,7 @@ export default function List(props) {
       {
           props.todos.map((todo) => <Todo key={todo.id} listId={props.id} {...todo} />)
       }
+      <Button size="small" style={{marginTop: '10px'}}onClick={handleRemoveList}>Delete List</Button>
     </Paper>
   );
 }
